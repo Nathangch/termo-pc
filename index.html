@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Termo Clone</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="header-left">
+            <!-- Termo Sub-Selector (Visible only in Termo modes) -->
+            <div id="termo-selector" class="dropdown-container hidden">
+                <button id="current-termo-mode">TERMO <span class="arrow">▼</span></button>
+                <div id="termo-options" class="dropdown-content hidden">
+                    <button class="sub-mode-btn" data-mode="1">TERMO</button>
+                    <button class="sub-mode-btn" data-mode="2">DUETO</button>
+                    <button class="sub-mode-btn" data-mode="4">QUARTETO</button>
+                </div>
+            </div>
+        </div>
+        <h1>TERMO</h1>
+        <div class="header-right">
+            <button id="help-btn" aria-label="Como jogar">?</button>
+            <button id="stats-btn" aria-label="Estatísticas">📊</button>
+            <!-- Oculto inicialmente -->
+        </div>
+    </header>
+
+    <main id="game-container">
+        <!-- Container para os tabuleiros. JS vai injetar .board-wrapper aqui -->
+        <div id="boards-container" class="boards-1">
+            <div id="board-0" class="board" aria-label="Tabuleiro 1">
+                <!-- Grid gerada via JS -->
+            </div>
+        </div>
+
+        <div id="messages"></div>
+    </main>
+
+    <div id="keyboard-container">
+        <div id="keyboard" role="group" aria-label="Teclado virtual">
+            <!-- O teclado será gerado via JavaScript -->
+        </div>
+    </div>
+
+    <!-- Floating Controls for Crossword -->
+    <div id="cw-floating-controls"></div>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="hidden"></div>
+
+    <div id="help-modal" class="modal hidden">
+        <div class="modal-header">
+            <h2>COMO JOGAR</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-content">
+            <p>Descubra a palavra certa em 6 tentativas.</p>
+            <p>Depois de cada tentativa, as peças mostram o quão perto você está da solução.</p>
+
+            <div class="examples">
+                <div class="example">
+                    <div class="row-example">
+                        <div class="tile correct">T</div>
+                        <div class="tile">U</div>
+                        <div class="tile">R</div>
+                        <div class="tile">M</div>
+                        <div class="tile">A</div>
+                    </div>
+                    <p>A letra <strong>T</strong> faz parte da palavra e está na posição correta.</p>
+                </div>
+
+                <div class="example">
+                    <div class="row-example">
+                        <div class="tile">V</div>
+                        <div class="tile">I</div>
+                        <div class="tile present">O</div>
+                        <div class="tile">L</div>
+                        <div class="tile">A</div>
+                    </div>
+                    <p>A letra <strong>O</strong> faz parte da palavra, mas em outra posição.</p>
+                </div>
+
+                <div class="example">
+                    <div class="row-example">
+                        <div class="tile">P</div>
+                        <div class="tile">U</div>
+                        <div class="tile">L</div>
+                        <div class="tile absent">G</div>
+                        <div class="tile">A</div>
+                    </div>
+                    <p>A letra <strong>G</strong> não faz parte da palavra.</p>
+                </div>
+            </div>
+
+            <p class="footnote">Os acentos são preenchidos automaticamente.</p>
+        </div>
+    </div>
+
+    <div id="stats-modal" class="modal hidden">
+        <div class="modal-header">
+            <h2>ESTATÍSTICAS</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-content">
+            <div id="statistics">
+                <div class="stat-box">
+                    <span id="stat-played">0</span>
+                    <span class="label">jogos</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-win-pct">0%</span>
+                    <span class="label">de vitórias</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-streak">0</span>
+                    <span class="label">sequência</span>
+                </div>
+                <div class="stat-box">
+                    <span id="stat-max-streak">0</span>
+                    <span class="label">melhor seq.</span>
+                </div>
+            </div>
+
+            <h3>DISTRIBUIÇÃO DE TENTATIVAS</h3>
+            <div id="guess-distribution">
+                <!-- Barras geradas via JS -->
+            </div>
+
+            <div class="footer-stats">
+                <div class="timer-container">
+                    <p>PRÓXIMA PALAVRA</p>
+                    <span id="countdown">00:00:00</span>
+                </div>
+                <button id="share-btn">
+                    COMPARTILHAR <span class="share-icon">🔗</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Button (Bottom Left) -->
+    <button id="main-menu-btn" aria-label="Menu de Modos">
+        ☰
+    </button>
+
+    <!-- Games Mode Modal -->
+    <div id="games-modal" class="modal hidden">
+        <div class="modal-header">
+            <h2>MODOS DE JOGO</h2>
+            <button class="close-btn">&times;</button>
+        </div>
+        <div class="modal-content display-grid-menu">
+            <button class="game-mode-option" data-mode="1">
+                <span class="icon">T</span>
+                <span class="name">TERMO</span>
+            </button>
+            <button class="game-mode-option" data-mode="crossword">
+                <span class="icon">⚔️</span>
+                <span class="name">PALAVRAS CRUZADAS</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- words.js contents are now bundled in script.js to avoid loading errors -->
+    <script src="script.js"></script>
+</body>
+
+</html>
