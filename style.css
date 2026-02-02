@@ -873,281 +873,230 @@ header h1 {
 /* On very small mobile screens, we might need adjustments, 
    but user requested strict side-by-side solidity. 
    We will keep it flexible but robust. */
-@media (max-width: 700px) {
+/* --- Classic Grid Styling --- */
+.crossword-grid {
+    display: grid;
+    /* Grid structure handled by JS */
+    gap: 1px;
+    /* The 'border' between cells */
+    background-color: #000;
+    border: 4px solid #000;
+    width: max-content;
+    max-width: 100%;
+    /* No border-radius for classic look */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
 
-    /* Crossword Container */
+.cw-cell {
+    width: 40px;
+    height: 40px;
+    position: relative;
+    /* Default: Black Block */
+    background-color: #000;
+    color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    user-select: none;
+}
+
+/* Active Word Slot (White Cell) */
+.cw-cell.active-word {
+    background-color: #fff;
+    color: #000;
+    cursor: pointer;
+}
+
+/* Numbers in cells */
+.cw-num {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    font-size: 0.6rem;
+    line-height: 1;
+    color: #444;
+    pointer-events: none;
+    font-weight: normal;
+}
+
+/* Highlights */
+.cw-cell.highlight {
+    background-color: #e3f2fd;
+    /* Light Blue for current word */
+}
+
+.cw-cell.active-cell {
+    background-color: #ffeb3b !important;
+    /* Yellow for current cursor */
+}
+
+/* Validation States */
+.cw-cell.correct {
+    background-color: #6aaa64 !important;
+    /* Green */
+    color: #fff !important;
+}
+
+.cw-cell.correct .cw-num {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.cw-cell.absent {
+    background-color: #ef9a9a !important;
+    /* Light Red */
+    color: #000 !important;
+}
+
+/* --- Hints Panel (Card Style) --- */
+.cw-right-col {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 350px;
+    flex-shrink: 0;
+}
+
+.cw-hints-panel {
+    /* Transparent wrapper */
+    background: transparent;
+    border: none;
+    padding: 0;
+    height: auto;
+    max-height: 600px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.hints-section {
+    background-color: #f8f9fa;
+    /* Off-white card */
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.hints-section h3 {
+    margin: 0 0 10px 0;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--color-correct);
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.hint-item {
+    padding: 6px 8px;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    display: flex;
+    gap: 8px;
+    color: #333;
+}
+
+.hint-item:hover {
+    background-color: #e9ecef;
+}
+
+.hint-item.active-hint {
+    background-color: #e3f2fd;
+    font-weight: bold;
+    border-left: 4px solid #2196f3;
+}
+
+.hint-num {
+    font-weight: bold;
+    color: #007bff;
+    min-width: 20px;
+}
+
+/* Floating Finish Button */
+.cw-finish-btn {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 1000;
+
+    background-color: var(--color-correct);
+    color: white;
+    border: none;
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+    /* Circle */
+    font-size: 2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+}
+
+.cw-finish-btn:hover {
+    transform: scale(1.1);
+    background-color: #3aa394;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+}
+
+.cw-finish-btn:active {
+    transform: scale(0.95);
+}
+
+/* Responsive adjustments */
+@media (max-width: 850px) {
     .crossword-container {
-        display: flex;
-        flex-direction: row;
-        align-items: flex-start;
-        justify-content: center;
-        gap: 30px;
-        padding: 20px;
-        max-width: 1200px;
-        margin: 0 auto;
-    }
-
-    /* --- CLassic Grid Styling --- */
-    .crossword-grid {
-        display: grid;
-        /* Grid structure handled by JS */
-        gap: 1px;
-        /* The 'border' between cells */
-        background-color: #000;
-        border: 4px solid #000;
-        width: max-content;
-        max-width: 100%;
-        /* No border-radius for classic look */
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    }
-
-    .cw-cell {
-        width: 40px;
-        height: 40px;
-        position: relative;
-        /* Default: Black Block */
-        background-color: #000;
-        color: transparent;
-        display: flex;
+        flex-direction: column;
         align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        font-weight: bold;
-        text-transform: uppercase;
-        user-select: none;
+        gap: 20px;
     }
 
-    /* Active Word Slot (White Cell) */
-    .cw-cell.active-word {
-        background-color: #fff;
-        color: #000;
-        cursor: pointer;
-    }
-
-    /* Numbers in cells */
-    .cw-num {
-        position: absolute;
-        top: 2px;
-        left: 2px;
-        font-size: 0.6rem;
-        line-height: 1;
-        color: #444;
-        pointer-events: none;
-        font-weight: normal;
-    }
-
-    /* Highlights */
-    .cw-cell.highlight {
-        background-color: #e3f2fd;
-        /* Light Blue for current word */
-    }
-
-    .cw-cell.active-cell {
-        background-color: #ffeb3b !important;
-        /* Yellow for current cursor */
-    }
-
-    /* Validation States */
-    .cw-cell.correct {
-        background-color: #6aaa64 !important;
-        /* Green */
-        color: #fff !important;
-    }
-
-    .cw-cell.correct .cw-num {
-        color: rgba(255, 255, 255, 0.7);
-    }
-
-    .cw-cell.absent {
-        background-color: #cfd8dc !important;
-        /* Gray/Reddish for wrong? References usually show errors clearly. Let's stick to simple gray or red. */
-        background-color: #ef9a9a !important;
-        /* Light Red */
-        color: #000 !important;
-    }
-
-    /* --- Hints Panel (Card Style) --- */
     .cw-right-col {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-        width: 350px;
-        flex-shrink: 0;
-    }
-
-    .cw-hints-panel {
-        /* Transparent wrapper */
-        background: transparent;
-        border: none;
-        padding: 0;
-        height: auto;
-        max-height: 600px;
-        overflow-y: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .hints-section {
-        background-color: #f8f9fa;
-        /* Off-white card */
-        padding: 15px;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-        color: #333;
-    }
-
-    .hints-section h3 {
-        margin: 0 0 10px 0;
-        font-size: 0.9rem;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        color: #555;
-        border-bottom: 2px solid #ddd;
-        padding-bottom: 5px;
-    }
-
-    .hint-item {
-        padding: 6px 8px;
-        font-size: 0.9rem;
-        line-height: 1.4;
-        cursor: pointer;
-        border-radius: 4px;
-        margin-bottom: 4px;
-        display: flex;
-        gap: 8px;
-        color: #333;
-    }
-
-    .hint-item:hover {
-        background-color: #e9ecef;
-    }
-
-    .hint-item.active-hint {
-        background-color: #e3f2fd;
-        font-weight: bold;
-        border-left: 4px solid #2196f3;
-    }
-
-    .hint-num {
-        font-weight: bold;
-        color: #007bff;
-        min-width: 20px;
-    }
-
-    /* Responsive adjustments */
-    @media (max-width: 850px) {
-        .crossword-container {
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .cw-right-col {
-            width: 100%;
-            max-width: 500px;
-        }
-
-        .cw-hints-panel {
-            max-height: 300px;
-        }
-    }
-
-    /* Keyboard Container - Original */
-    #keyboard-container {
         width: 100%;
-        max-width: 900px;
-        margin: 0 auto;
-        padding-bottom: 20px;
-        /* Removed flex centering that messed up the keys */
-    }
-
-    /* Floating Finish Button */
-    .cw-finish-btn {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        z-index: 1000;
-
-        background-color: var(--color-correct);
-        color: white;
-        border: none;
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        /* Circle */
-        font-size: 1.8rem;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: transform 0.2s, box-shadow 0.2s;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-    }
-
-    .cw-finish-btn:hover {
-        transform: scale(1.1);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
-    }
-
-    .cw-finish-btn:active {
-        transform: scale(0.95);
-    }
-
-    .hints-section h3 {
-        font-size: 1rem;
-        margin-bottom: 8px;
-        color: var(--color-correct);
-        text-transform: uppercase;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 5px;
+        max-width: 500px;
     }
 
     .cw-hints-panel {
-        color: #ccc;
-        display: flex;
-        gap: 8px;
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 500px) {
+    .cw-cell {
+        width: 28px;
+        height: 28px;
+        font-size: 0.8rem;
     }
 
-    .hint-item:hover {
-        background-color: rgba(255, 255, 255, 0.05);
+    .cw-finish-btn {
+        width: 55px;
+        height: 55px;
+        bottom: 20px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 500px) {
+    .boards-4 {
+        gap: 3px !important;
+        --block-size: min(22px, 3vh, 4.5vw);
+        --gap-size: 2px;
+        --font-size-tile: 11px;
     }
 
-    .hint-item.active-hint {
-        background-color: var(--color-correct);
-        color: white;
+    .boards-2 {
+        --block-size: 40px;
+        --gap-size: 4px;
+        --font-size-tile: 1.4rem;
     }
-
-    .hint-item .hint-num {
-        font-weight: bold;
-        min-width: 20px;
-    }
-
-    .hint-item .hint-text {
-        flex-grow: 1;
-    }
-
-    @media (max-width: 500px) {
-        .cw-cell {
-            width: 28px;
-            height: 28px;
-            font-size: 0.8rem;
-        }
-    }
-
-    /* Media Queries para Quarteto em Mobile */
-    @media (max-width: 500px) {
-        .boards-4 {
-            gap: 3px !important;
-            --block-size: min(22px, 3vh, 4.5vw);
-            --gap-size: 2px;
-            --font-size-tile: 11px;
-        }
-
-        .boards-2 {
-            --block-size: 40px;
-            --gap-size: 4px;
-            --font-size-tile: 1.4rem;
-        }
-    }
+}
