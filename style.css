@@ -770,21 +770,6 @@ header h1 {
     gap: 8px;
 }
 
-/* Media Queries */
-@media (max-width: 500px) {
-    .boards-4 {
-        gap: 3px !important;
-        --block-size: min(22px, 3vh, 4.5vw);
-        --gap-size: 2px;
-        --font-size-tile: 11px;
-    }
-
-    .boards-2 {
-        --block-size: 40px;
-        --gap-size: 4px;
-        --font-size-tile: 1.4rem;
-    }
-}
 
 /* Floating Menu Button */
 #main-menu-btn {
@@ -1072,6 +1057,8 @@ header h1 {
 }
 
 @media (max-width: 500px) {
+
+    /* Crossword Mobile */
     .cw-cell {
         width: 28px;
         height: 28px;
@@ -1084,19 +1071,25 @@ header h1 {
         bottom: 20px;
         right: 20px;
     }
-}
 
-@media (max-width: 500px) {
+    /* Termo Boards Mobile */
     .boards-4 {
-        gap: 3px !important;
-        --block-size: min(22px, 3vh, 4.5vw);
+        gap: 2px !important;
+        --block-size: min(20px, 3.5vh, 4.5vw);
         --gap-size: 2px;
         --font-size-tile: 11px;
     }
 
     .boards-2 {
-        --block-size: 40px;
+        --block-size: min(34px, 4.5vh, 9vw);
+        --gap-size: 2px;
+        --font-size-tile: 1.2rem;
+        gap: 8px !important;
+    }
+
+    .boards-1 {
+        --block-size: min(60px, 8vh, 15vw);
         --gap-size: 4px;
-        --font-size-tile: 1.4rem;
+        --font-size-tile: 1.8rem;
     }
 }
