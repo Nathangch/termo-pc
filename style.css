@@ -385,12 +385,10 @@ header h1 {
     transition: background-color 0.5s, border-color 0.5s, color 0.5s;
 }
 
-.tile.active-focus {
-    border-color: rgba(255, 255, 255, 0.5);
-}
+/* .tile.active-focus moved further down */
 
 .tile[data-status="tbd"] {
-    border-color: #4c4347;
+    border-color: #818384;
     background-color: #615458;
 }
 
@@ -407,6 +405,10 @@ header h1 {
 .tile.absent {
     background-color: var(--color-absent);
     border-color: var(--color-absent);
+}
+
+.tile.active-focus {
+    border-color: #ffffff !important;
 }
 
 /* Animações */
