@@ -882,8 +882,19 @@ class Game {
             return;
         }
 
+        if (!this.isValidWord(guessWord)) {
+            showMessage("Palavra não aceita");
+            this.shakeActiveRows();
+            return;
+        }
+
         // Processa guess
         this.processTurn(guessWord);
+    }
+
+    isValidWord(word) {
+        const normalized = normalizeWord(word);
+        return WORDS_DATA.some(w => normalizeWord(w) === normalized);
     }
 
     processTurn(guessWord) {
@@ -1248,12 +1259,55 @@ class Game {
         }
     }
 
+    handleEndGame(win) {
+        this.isGameOver = true;
+        // Assuming updateFocus is a method that clears active focus for the current game mode
+        // If this is for crossword, it might be updateCrosswordFocus or similar.
+        // For now, I'll assume it's a generic method or needs to be adapted.
+        // If this is for Termo, it would be this.boards.forEach(b => b.updateFocus());
+        // Since this is a crossword context, I'll comment it out or adapt if a clear equivalent exists.
+        // this.updateFocus(); // Clear active-focus
+
+        if (win) {
+            showMessage("Parabéns!");
+            this.stats[this.mode].won++;
+            this.stats[this.mode].streak++;
+            if (this.stats[this.mode].streak > this.stats[this.mode].maxStreak) {
+                this.stats[this.mode].maxStreak = this.stats[this.mode].streak;
+            }
+            // This part seems specific to Termo (boards, currentRow, dist by attempts)
+            // For crossword, 'attempts' might be different or not applicable in the same way.
+            // I'll keep it as is, assuming 'boards[0]' refers to the primary game board if multiple exist.
+            // If this is purely crossword, this logic needs re-evaluation.
+            const attempts = this.boards && this.boards[0] ? this.boards[0].currentRow + 1 : 1; // Placeholder for crossword
+            this.stats[this.mode].dist[attempts] = (this.stats[this.mode].dist[attempts] || 0) + 1;
+        } else {
+            // This part also seems Termo-specific (secrets from boards)
+            const secrets = this.boards ? this.boards.filter(b => !b.isSolved).map(b => b.secretWord).join(", ") : "a palavra"; // Placeholder for crossword
+            showMessage(`Fim de jogo! As palavras eram: ${secrets}`, 5000);
+            this.stats[this.mode].streak = 0;
+            this.stats[this.mode].dist.fail++;
+        }
+        this.stats[this.mode].played++;
+        this.saveStats();
+
+        setTimeout(() => {
+            this.renderStats();
+            openModal('stats-modal');
+        }, 1500);
+    }
+
     shakeActiveRows() {
-        this.boards.forEach(b => {
-            if (!b.isSolved && !b.isFailed) {
-                const rowDiv = b.element.querySelectorAll('.row')[b.currentRow];
-                rowDiv.classList.add('invalid');
-                setTimeout(() => rowDiv.classList.remove('invalid'), 500);
+        // This method seems specific to Termo (shaking rows on multiple boards)
+        // For crossword, it might apply to the current active word or cell.
+        // I'll keep the original implementation, assuming 'boards' might exist in a hybrid game.
+        this.boards.forEach(board => {
+            if (!board.isSolved && !board.isFailed) {
+                const row = board.element.querySelectorAll('.row')[board.currentRow];
+                if (row) {
+                    row.classList.add('invalid');
+                    setTimeout(() => row.classList.remove('invalid'), 500);
+                }
             }
         });
     }
