@@ -23,6 +23,15 @@
                     <button class="sub-mode-btn" data-mode="4">QUARTETO</button>
                 </div>
             </div>
+
+            <!-- Crossword Sub-Selector (Visible only in Crossword modes) -->
+            <div id="crossword-selector" class="dropdown-container hidden">
+                <button id="current-crossword-mode">LETRAS <span class="arrow">▼</span></button>
+                <div id="crossword-options" class="dropdown-content hidden">
+                    <button class="cw-sub-mode-btn" data-mode="crossword">LETRAS</button>
+                    <button class="cw-sub-mode-btn" data-mode="exact-crossword">NÚMEROS</button>
+                </div>
+            </div>
         </div>
         <h1>TERMO</h1>
         <div class="header-right">
@@ -61,46 +70,83 @@
             <button class="close-btn">&times;</button>
         </div>
         <div class="modal-content">
-            <p>Descubra a palavra certa em 6 tentativas.</p>
-            <p>Depois de cada tentativa, as peças mostram o quão perto você está da solução.</p>
+            <div id="help-content-termo">
+                <p>Descubra a palavra certa em 6 tentativas.</p>
+                <p>Depois de cada tentativa, as peças mostram o quão perto você está da solução.</p>
 
-            <div class="examples">
-                <div class="example">
-                    <div class="row-example">
-                        <div class="tile correct">T</div>
-                        <div class="tile">U</div>
-                        <div class="tile">R</div>
-                        <div class="tile">M</div>
-                        <div class="tile">A</div>
+                <div class="examples">
+                    <div class="example">
+                        <div class="row-example">
+                            <div class="tile correct">T</div>
+                            <div class="tile">U</div>
+                            <div class="tile">R</div>
+                            <div class="tile">M</div>
+                            <div class="tile">A</div>
+                        </div>
+                        <p>A letra <strong>T</strong> faz parte da palavra e está na posição correta.</p>
                     </div>
-                    <p>A letra <strong>T</strong> faz parte da palavra e está na posição correta.</p>
+
+                    <div class="example">
+                        <div class="row-example">
+                            <div class="tile">V</div>
+                            <div class="tile">I</div>
+                            <div class="tile present">O</div>
+                            <div class="tile">L</div>
+                            <div class="tile">A</div>
+                        </div>
+                        <p>A letra <strong>O</strong> faz parte da palavra, mas em outra posição.</p>
+                    </div>
+
+                    <div class="example">
+                        <div class="row-example">
+                            <div class="tile">P</div>
+                            <div class="tile">U</div>
+                            <div class="tile">L</div>
+                            <div class="tile absent">G</div>
+                            <div class="tile">A</div>
+                        </div>
+                        <p>A letra <strong>G</strong> não faz parte da palavra.</p>
+                    </div>
                 </div>
 
-                <div class="example">
-                    <div class="row-example">
-                        <div class="tile">V</div>
-                        <div class="tile">I</div>
-                        <div class="tile present">O</div>
-                        <div class="tile">L</div>
-                        <div class="tile">A</div>
-                    </div>
-                    <p>A letra <strong>O</strong> faz parte da palavra, mas em outra posição.</p>
-                </div>
-
-                <div class="example">
-                    <div class="row-example">
-                        <div class="tile">P</div>
-                        <div class="tile">U</div>
-                        <div class="tile">L</div>
-                        <div class="tile absent">G</div>
-                        <div class="tile">A</div>
-                    </div>
-                    <p>A letra <strong>G</strong> não faz parte da palavra.</p>
-                </div>
+                <p class="footnote">Os acentos são preenchidos automaticamente.</p>
             </div>
 
-            <p class="footnote">Os acentos são preenchidos automaticamente.</p>
+            <div id="help-content-crossword" class="hidden">
+                <p>Complete o diagrama preenchendo as palavras corretas de acordo com as dicas.</p>
+
+                <div class="examples">
+                    <p>• <strong>Selecionar:</strong> Clique em uma célula ou na dica à direita para selecionar uma
+                        palavra.</p>
+                    <p>• <strong>Digitar:</strong> Use o teclado para preencher as letras. O foco avança
+                        automaticamente.</p>
+                    <p>• <strong>Navegar:</strong> Use as setas do teclado para se mover pelo grid ou clique para mudar
+                        a direção (Horizontal/Vertical).</p>
+                    <p>• <strong>Dicas:</strong> Quando você preenche uma palavra corretamente, a pergunta
+                        correspondente na lista é riscada.</p>
+                    <p>• <strong>Verificar:</strong> Use o botão de check (✔) flutuante para validar todo o jogo.</p>
+                </div>
+
+                <p class="footnote">Não há limite de tentativas nas Palavras Cruzadas.</p>
+            </div>
+
         </div>
+
+        <div id="help-content-sudoku" class="hidden">
+            <p>Preencha o grid 9x9 com números de 1 a 9.</p>
+
+            <div class="examples">
+                <p>• <strong>Regras:</strong> Cada linha, coluna e bloco 3x3 deve conter todos os números de 1 a 9 sem
+                    repetições.</p>
+                <p>• <strong>Âncoras:</strong> Alguns números já estão fixos no grid e não podem ser alterados.</p>
+                <p>• <strong>Selecionar:</strong> Clique em uma célula para selecioná-la e use o teclado para inserir o
+                    número.</p>
+                <p>• <strong>Validar:</strong> Clique no botão ✔ para verificar se sua solução está correta.</p>
+            </div>
+
+            <p class="footnote">Sudoku é um jogo de lógica, não de matemática.</p>
+        </div>
+    </div>
     </div>
 
     <div id="stats-modal" class="modal hidden">
@@ -165,11 +211,17 @@
                 <span class="icon">⚔️</span>
                 <span class="name">PALAVRAS CRUZADAS</span>
             </button>
+            <button class="game-mode-option" data-mode="sudoku">
+                <span class="icon">🔢</span>
+                <span class="name">SUDOKU</span>
+            </button>
         </div>
     </div>
 
     <!-- Carrega a lista completa de palavras -->
     <script src="words.js"></script>
+    <script src="crossword_pool.js"></script>
+    <script src="exact_crossword_pool.js"></script>
     <script src="script.js"></script>
 </body>
 
