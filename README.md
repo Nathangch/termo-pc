@@ -1,74 +1,77 @@
-# 🧩 Termo Clone - Multimodal Wordle
+🧩 Termo Clone – Multimodal Wordle
+Demo License: MIT
 
-[![Demo](https://img.shields.io/badge/demo-online-brightgreen.svg)](https://nathangch.github.io/termo-pc/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+Uma recriação sofisticada e completa do popular jogo de palavras Termo (Wordle), desenvolvida inteiramente com tecnologias web puras (HTML, CSS e JavaScript). Este projeto oferece múltiplos modos de jogo, desde o clássico desafio de uma palavra até experiências mais complexas como quarteto, palavras cruzadas avançadas e um modo exclusivo de Sudoku.
 
-Uma recriação sofisticada e completa do popular jogo de palavras **Termo** (Wordle), desenvolvida inteiramente com tecnologias web puras (HTML, CSS e JavaScript). Este projeto oferece múltiplos modos de jogo, desde o clássico desafio de uma palavra até o intenso quarteto e um modo exclusivo de palavras cruzadas.
+🔗 Jogue Agora:
+https://nathangch.github.io/termo-pc/
 
-🔗 **Jogue Agora:** [https://nathangch.github.io/termo-pc/](https://nathangch.github.io/termo-pc/)
+🎮 Modos de Jogo
+O Termo Clone desafia seu vocabulário e raciocínio lógico em diferentes níveis de complexidade:
 
----
+1. 🔤 Clássico (Termo)
 
-## 🎮 Modos de Jogo
-
-O **Termo Clone** desafia seu vocabulário em diferentes níveis de complexidade:
-
-### 1. 🔤 Clássico (Termo)
 O desafio tradicional: adivinhe uma palavra de 5 letras em até 6 tentativas. Feedback visual instantâneo com cores:
-- 🟩 **Verde:** Letra correta na posição correta.
-- 🟨 **Amarelo:** Letra existe na palavra, mas em posição diferente.
-- ⬛ **Cinza:** Letra não existe na palavra.
 
-### 2. 👥 Dueto
-Tente adivinhar **duas palavras ao mesmo tempo**. Cada tentativa conta para ambos os tabuleiros. Exige estratégia dobrada!
+🟩 Verde: Letra correta na posição correta.
 
-### 3. 🍀 Quarteto
-O modo definitivo para mestres das palavras. Adivinhe **quatro palavras simultaneamente**. Gerencie suas tentativas com sabedoria para não ficar sem chances.
+🟨 Amarelo: Letra existe na palavra, mas em posição diferente.
 
-### 4. 📝 Palavras Cruzadas (Crossword)
-Um modo exclusivo onde você preenche uma grade interativa com dicas. Inclui sistema de auto-avanço e validação completa.
+⬛ Cinza: Letra não existe na palavra.
 
----
+2. 👥 Dueto
 
-## ✨ Características Principais
+Tente adivinhar duas palavras ao mesmo tempo. Cada tentativa conta para ambos os tabuleiros, exigindo estratégia e atenção redobradas.
 
-- **Design Premium:** Interface moderna, responsiva e com estética "glassmorphism".
-- **Totalmente Responsivo:** Otimizado para Desktop e Mobile (ajuste automático de grades para telas pequenas).
-- **Teclado Virtual Interativo:** Com indicação visual de progresso e cores dinâmicas.
-- **Estatísticas Locais:** Acompanhe suas vitórias, sequências (streaks) e distribuição de tentativas.
-- **Dicionário Abrangente:** Milhares de palavras em português para variação infinita.
-- **Modo Noturno Nativo:** Paleta de cores suave para longas sessões de jogo.
+3. 🍀 Quarteto
 
----
+O modo definitivo para mestres das palavras. Adivinhe quatro palavras simultaneamente e gerencie suas tentativas com sabedoria para não ficar sem chances.
 
-## 🚀 Tecnologias Utilizadas
+4. 📝 Palavras Cruzadas (Crossword)
 
-Este projeto foi construído focando em performance e simplicidade, sem dependências pesadas:
+Um modo interativo onde você preenche uma grade com base em dicas horizontais e verticais. Inclui sistema de auto-avanço, validação de palavras e integração total com o dicionário do jogo.
 
-- **HTML5:** Estrutura semântica.
-- **CSS3:** Design moderno, Variáveis CSS, Flexbox, Grid e Animações (@keyframes).
-- **Vanilla JavaScript:** Lógica de jogo assíncrona, manipulação de DOM e persistência local (LocalStorage).
+🔹 Submodo: Cruzadas Exatas
 
----
+Uma variação avançada das palavras cruzadas onde todas as respostas devem estar perfeitamente corretas para concluir o desafio. Não há aproximações — precisão total é obrigatória.
 
-## 🛠️ Como Executar Localmente
+5. 🧠 Sudoku
 
-1. Clone o repositório:
-   ```bash
-   git clone https://github.com/nathangch/termo-pc.git
-   ```
-2. Navegue até a pasta do projeto:
-   ```bash
-   cd termo-pc
-   ```
-3. Abra o arquivo `index.html` em seu navegador ou use uma extensão de "Live Server".
+Um modo de jogo exclusivo que combina lógica pura e raciocínio estratégico. Resolva grades de Sudoku diretamente no navegador, com validação de regras e interface integrada ao estilo visual do Termo Clone.
 
----
+✨ Características Principais
 
-## 📝 Licença
+Design Premium: Interface moderna, responsiva e com estética glassmorphism.
 
-Este projeto está sob a licença [MIT](LICENSE). Sinta-se à vontade para usar, modificar e distribuir.
+Totalmente Responsivo: Otimizado para Desktop e Mobile, com ajuste automático de layouts.
 
----
+Teclado Virtual Interativo: Indicação visual de progresso e cores dinâmicas.
 
-Desevolvido por [nathangch](https://github.com/nathangch) 🚀
+Estatísticas Locais: Acompanhe vitórias, sequências (streaks) e distribuição de tentativas.
+
+Dicionário Abrangente: Milhares de palavras em português para variação infinita.
+
+Modo Noturno Nativo: Paleta de cores suave para longas sessões de jogo.
+
+🚀 Tecnologias Utilizadas
+Este projeto foi construído com foco em performance, clareza de código e ausência de dependências pesadas:
+
+HTML5: Estrutura semântica.
+
+CSS3: Design moderno, Variáveis CSS, Flexbox, Grid e Animações (@keyframes).
+
+Vanilla JavaScript: Lógica de jogo assíncrona, manipulação de DOM e persistência local (LocalStorage).
+
+🛠️ Como Executar Localmente
+
+Clone o repositório:
+
+git clone https://github.com/nathangch/termo-pc.git
+
+
+Navegue até a pasta do projeto:
+
+cd termo-pc
+
+
+Abra o arquivo index.html em seu navegador ou utilize uma extensão como Live Server.
